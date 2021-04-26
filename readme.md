@@ -1,7 +1,7 @@
 # Mongo DB Backup and Restore
 
-Shell script for backing up Mongo Databases on a given server.  
-You can have your Mongo Database backed up and compressed in a directory and filename of your choice.
+Shell script for backing up and Restoring Mongo Databases on a given server.  
+You can have your Mongo Database backed up and compressed in a directory created automatically in this repository root.
 
 ## Configuration
 
@@ -9,60 +9,53 @@ At a minimum there are only two lines in the file you will need to edit to make 
 If you server is not on localhost or requires a username and password you will need to correct that information
 at the top of the file.
 
-### Defaults
+### Backup Defaults (in the .env file)
 
-* HOST: localhost
-* PORT: 27017
-* CONNECTION_STRING
+* HOST
+	# Example: localhost or cluster0.0000.gcp.mongodb.net
 
-### Setting Path and File
+* PORT
+	# Example: 27017
 
-By default (as the script comes, and if choosen FILE_NAME is empty), the script will generate a file
-with the current date as the filename.
+* BACKUP_CONNECTION_STRING
+	# Example: mongodb+srv://<username>:<password>@cluster0.0000.gcp.mongodb.net
 
-When the word 'DATE' appears in the backup path or file name it is replaced by the current date. 
-This allows you to put the date the backup was made in the file or a directory itself,
-very useful for organizing daily backups when running from a cron job.
+* BACKUP_DB_NAME
+	# Example: "users"
 
 
-* BACKUP_PATH (Line #20): This path is where your backups will be stored (omit trailing slash)
-* FILE_NAME (Line #21): This the filename of the tar file that is generated (tar.gz will be appended)
+### Restore Defaults (also in the .env file)
 
-Examples
-	
-	# create a file called mongo-db.tar.gz in a directory the current date (daily backups)
-	BACKUP_PATH="/opt/db-backups/daily/DATE"
-	FILE_NAME="mongo-db"
+* RESTORE_CONNECTION_STRING
+	# This may be empty in case you are not using username and password;
+	# This may be the same as the BACKUP_CONNECTION_STRING if you want to restore the data at the original source;
+	# This may be another connection string in case you whant to send the data to another Database like a DB migration for example.
+								
+* RESTORE_DB_NAME
+	# Format: yyyy-mm-dd
+	# In the `Backups` folder created automatically in this repository source there must exist a sub-directory named with that date.
 
-	# create a file with the date in the filename
-	BACKUP_PATH="/opt/db-backups"
-	FILE_NAME="mongodb.DATE" #ex: mongodb.2011-12-19.tar.gz
 
 ### Lounching the backup
 
-Once it is configured, at the root of the repo, all you need to do is louch the "backup.sh" file by typing that way in the shell: "./backup.sh" and after that, if your configs are right, you should see the backup running in the shell.
+Once it you configured correctly the `.env` file, at the root of this repository, all you need to do is louch the backup by typing that command in the shell: `./backup.sh` and after that, if your configs are right, you should see the backup running in the shell.
+* IMPORTANT: the command must to be executed in the root folder of this repository.
 
 
 ### Script Output
 
-On successfully backup the script will inform you of the filesize and filename of the backup
-
-	=> Backing up Mongo Server: localhost:27017
-	   connected to: localhost:27017
-	=> Success: 4.6M        mongo-db.tar.gz
-
+As the code runs, some messages will be printed in the shell. Since the initial steps until the success or error in the end.
 
 ## Restoring from Backup
 
-Restore a backup using the `./restore.sh` command.
-
-	Before using that command don't forget to fill the .env.sh file vars:
+Restore a backup using the `./restore.sh` command in the shell also in this repository root.
+* IMPORTANT: Before using that command don't forget to fill correctly the `.env` file variables:
 	
 		* RESTORE_CONNECTION_STRING
 		* RESTORE_DATE
 		* RESTORE_DB_NAME
 
-	That uses the mongorestore command from Mongo DB tools.
+	That restore command uses the mongorestore command from Mongo DB tools.
 	mongorestore [options] [directory or filename to restore from]
 
 For more information, check out the mongoDB site:
@@ -72,7 +65,7 @@ http://www.mongodb.org/display/DOCS/Import+Export+Tools#ImportExportTools-mongod
 
 # License (MIT)
 
-Copyright (c) 2011 Michael Mottola <mikemottola@gmail.com>
+Copyright (c) 2021 Douglas José Rosa <douglasjrosa@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
