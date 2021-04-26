@@ -1,1 +1,1 @@
-./Controllers/mongodb-backup.sh
+$PWD"/Controllers/mongodb-backup.sh"
