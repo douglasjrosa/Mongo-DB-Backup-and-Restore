@@ -9,40 +9,40 @@ At a minimum there are only two lines in the file you will need to edit to make 
 If you server is not on localhost or requires a username and password you will need to correct that information
 at the top of the file.
 
-### Backup Defaults (in the .env file)
+## Backup Defaults (in the .env file)
 
 * HOST
-	# Example: localhost or cluster0.0000.gcp.mongodb.net
+	### Example: localhost or cluster0.0000.gcp.mongodb.net
 
 * PORT
-	# Example: 27017
+	### Example: 27017
 
 * BACKUP_CONNECTION_STRING
-	# Example: mongodb+srv://<username>:<password>@cluster0.0000.gcp.mongodb.net
+	### Example: mongodb+srv://<username>:<password>@cluster0.0000.gcp.mongodb.net
 
 * BACKUP_DB_NAME
-	# Example: "users"
+	### Example: "users"
 
 
-### Restore Defaults (also in the .env file)
+## Restore Defaults (also in the .env file)
 
-* RESTORE_CONNECTION_STRING
-	# This may be empty in case you are not using username and password;
-	# This may be the same as the BACKUP_CONNECTION_STRING if you want to restore the data at the original source;
-	# This may be another connection string in case you whant to send the data to another Database like a DB migration for example.
+*RESTORE_CONNECTION_STRING
+	### This may be empty in case you are not using username and password;
+	### This may be the same as the BACKUP_CONNECTION_STRING if you want to restore the data at the original source;
+	### This may be another connection string in case you whant to send the data to another Database like a DB migration for example.
 								
-* RESTORE_DB_NAME
-	# Format: yyyy-mm-dd
-	# In the `Backups` folder created automatically in this repository source there must exist a sub-directory named with that date.
+`* RESTORE_DB_NAME`
+	### Format: yyyy-mm-dd
+	### In the `Backups` folder created automatically in this repository source there must exist a sub-directory named with that date.
 
 
-### Lounching the backup
+## Lounching the backup
 
 Once it you configured correctly the `.env` file, at the root of this repository, all you need to do is louch the backup by typing that command in the shell: `./backup.sh` and after that, if your configs are right, you should see the backup running in the shell.
 * IMPORTANT: the command must to be executed in the root folder of this repository.
 
 
-### Script Output
+## Script Output
 
 As the code runs, some messages will be printed in the shell. Since the initial steps until the success or error in the end.
 
