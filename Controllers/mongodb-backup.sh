@@ -16,7 +16,7 @@
 ##################################################################################
 
 # Gets enviroment variables from env.sh wich is ommited by gitignore
-source $PWD"/.env.sh"
+source $PWD"/.env"
 
 # Set where database backups will be stored
 # keyword DATE gets replaced by the current date, you can use it in either path below

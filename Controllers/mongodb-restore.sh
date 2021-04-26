@@ -17,7 +17,7 @@
 ##################################################################################
 
 # Gets enviroment variables from env.sh wich is ommited by gitignore
-source $PWD"/.env.sh"
+source $PWD"/.env"
 
 # Gets Tar bin path
 TAR_BIN_PATH="$(which tar)"
