@@ -1,4 +1,4 @@
-# Mongo DB Shell Backup
+# Mongo DB Backup and Restore
 
 Shell script for backing up Mongo Databases on a given server.  
 You can have your Mongo Database backed up and compressed in a directory and filename of your choice.
@@ -54,13 +54,16 @@ On successfully backup the script will inform you of the filesize and filename o
 
 ## Restoring from Backup
 
-Restore a backup using the `mongorestore` command.
+Restore a backup using the `./restore.sh` command.
 
+	Before using that command don't forget to fill the .env.sh file vars:
+	
+		* RESTORE_CONNECTION_STRING
+		* RESTORE_DATE
+		* RESTORE_DB_NAME
+
+	That uses the mongorestore command from Mongo DB tools.
 	mongorestore [options] [directory or filename to restore from]
-
-	Examples
-	mongorestore /opt/mongo-backups/myawesome_project_production/
-	mongorestore /opt/mongo-backups/myawesome_project_production/users.bson
 
 For more information, check out the mongoDB site:
 

@@ -60,6 +60,7 @@ if [ -d "$BACKUP_PATH" ]; then
         fi
 
         if [ $OK == "0" ]; then
+            echo
             echo "=> Re-compressing files in the backup folder..."
             $TAR_BIN_PATH --remove-files -czf $FILE_NAME *
             OK=$?
@@ -68,7 +69,7 @@ if [ -d "$BACKUP_PATH" ]; then
         fi
         
         if [ $OK == "0" ] && [ -f "$FILE_NAME" ]; then
-            echo "!!!=> Restore completed successfully!"
+            echo "=> Restore completed successfully!"
         else
             "!!!=> The restore seems to be donne successfully, but something went wrong with the backup files :("
         fi
