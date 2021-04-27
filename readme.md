@@ -5,42 +5,41 @@ You can have your Mongo Database backed up and compressed in a directory created
 
 ## Configuration
 
-At a minimum there are only two lines in the file you will need to edit to make this script work for you.
-If you server is not on localhost or requires a username and password you will need to correct that information
-at the top of the file.
+In order to make this code work for you, the first thing you must to do is to make a copy of the `.env.example` file in the repository root. The name of this new file has to be just `.env`.
+After that, get into the file and fill all the enviroment variables with your own access data.
+The way you have to do that is described bellow with more details.
 
 ## Backup Defaults (in the .env file)
 
 	HOST
-		* Example: localhost or cluster0.0000.gcp.mongodb.net
+	* Example: localhost or cluster0.0000.gcp.mongodb.net
 
 	PORT
-		* Example: 27017
+	* Example: 27017
 
 	BACKUP_CONNECTION_STRING
-		* Example: mongodb+srv://<username>:<password>@cluster0.0000.gcp.mongodb.net
+	* Example: mongodb+srv://<username>:<password>@cluster0.0000.gcp.mongodb.net
 
-		BACKUP_DB_NAME
-			* Example: "users"
+	BACKUP_DB_NAME
+	* Example: "users"
 
 
 ## Restore Defaults (also in the .env file)
 
 	RESTORE_CONNECTION_STRING
-		* This may be empty in case you are not using username and password;
-		* This may be the same as the BACKUP_CONNECTION_STRING if you want to restore the data at the original source;
-		* This may be another connection string in case you whant to send the data to another Database like a DB migration for example.
+	* This may be empty in case you are not using username and password;
+	* This may be the same as the BACKUP_CONNECTION_STRING if you want to restore the data at the original source;
+	* This may be another connection string in case you whant to send the data to another Database like a DB migration for example.
 	
 	RESTORE_DB_NAME
-		* Format: yyyy-mm-dd
-		* In the `Backups` folder created automatically in this repository source there must exist a sub-directory named with that date.
+	* Format: yyyy-mm-dd
+	* In the `Backups` folder created automatically in this repository source there must exist a sub-directory named with that date.
 
 
 ## Lounching the backup
 
 Once it you configured correctly the `.env` file, at the root of this repository, all you need to do is louch the backup by typing that command in the shell: `./backup.sh` and after that, if your configs are right, you should see the backup running in the shell.
-*IMPORTANT*: the command must to be executed in the root folder of this repository.
-
+IMPORTANT: the command must to be executed in the root folder of this repository.
 
 ## Script Output
 
@@ -49,13 +48,14 @@ As the code runs, some messages will be printed in the shell. Since the initial 
 ## Restoring from Backup
 
 Restore a backup using the `./restore.sh` command in the shell also in this repository root.
-*IMPORTANT*: Before using that command don't forget to fill correctly the `.env` file variables:
+IMPORTANT: Before using that command don't forget to fill correctly the `.env` file variables:
 	
-		RESTORE_CONNECTION_STRING
-		RESTORE_DATE
-		RESTORE_DB_NAME
+	RESTORE_CONNECTION_STRING
+	RESTORE_DATE
+	RESTORE_DB_NAME
 
-	That restore command uses the mongorestore command from Mongo DB tools.
+That restore command uses the mongorestore command from Mongo DB tools.
+	
 	mongorestore [options] [directory or filename to restore from]
 
 For more information, check out the mongoDB site:
