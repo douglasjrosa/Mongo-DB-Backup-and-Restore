@@ -32,8 +32,12 @@ The way you have to do that is described bellow with more details.
 	* This may be another connection string in case you whant to send the data to another Database like a DB migration for example.
 	
 	RESTORE_DB_NAME
+	* Example: "users"
+	* This may be diferent from the BACKUP_DB_NAME if you want to send the data do a diferent place.
+
+	RESTORE_DATE
 	* Format: yyyy-mm-dd
-	* In the `Backups` folder created automatically in this repository source there must exist a sub-directory named with that date.
+	* In the `Backups` folder, created automatically in this repository source, there must exist a sub-directory named with that date.
 
 
 ## Lounching the backup
